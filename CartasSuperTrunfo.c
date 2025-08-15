@@ -12,10 +12,10 @@ int main()
     // impressão de texto no terminal
     printf("Digite a inicial do primeiro Estado: ");
     // leitura de entrada do valor do usuário e alocação do valor na variável
-    scanf("%c", &estado1);
+    scanf(" %c", &estado1);
 
     printf("Digite o código do primeiro Estado: ");
-    scanf("%s", codigoDaCarta1);
+    scanf("%3s", codigoDaCarta1);
 
     printf("Digite o nome do primeiro Estado: ");
     scanf("%s", cidade1);
@@ -38,7 +38,7 @@ int main()
     scanf(" %c", &estado2);
 
     printf("Digite o código do segundo Estado: ");
-    scanf("%s", codigoDaCarta2);
+    scanf("%3s", codigoDaCarta2);
 
     printf("Digite o nome do segundo Estado: ");
     scanf("%s", cidade2);
