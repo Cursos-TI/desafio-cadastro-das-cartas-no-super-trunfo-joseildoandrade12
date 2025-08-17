@@ -1,76 +1,101 @@
 #include <stdio.h>
 
+// Variáveis declaradas globalmente
+typedef struct
+{
+    char estado;
+    char codigoDaCarta[4];
+    char nomeCidade[20];
+    double populacao;
+    int numeroPontosTuristicos;
+    double area;
+    double pib;
+    double densidadePopulacional;
+    double pibPerCapita;
+    double superPoder;
+} dadosCidade;
+
+dadosCidade cidade[2];
+
+// Calcula soma densidade
+double somaDensidade(double populacaoValue, double areaValue)
+{
+    return populacaoValue / areaValue;
+}
+
+// Calcula soma pib per capita
+double somaPibPerCapita(double pibValue, double populacaoValue)
+{
+    return (pibValue * 1000000000.0) / (float)populacaoValue;
+}
+
+int separador()
+{
+    printf("----------------------------\n");
+    return 0;
+}
+
 int main()
 {
-    // Declaração de variáveis
-    char estado1, estado2, codigoDaCarta1[4], codigoDaCarta2[4], cidade1[20], cidade2[20];
-    int populacao1, populacao2, numeroPontosTuristicos1, numeroPontosTuristicos2;
-    float area1, area2, pib1, pib2;
+    // loop com variáveis globais
+    for (int i = 0; i < 2; i++)
+    {
+        // impressão de texto no terminal
+        printf("Digite a inicial do Estado: ");
+        // leitura de entrada do valor do usuário e alocação do valor na variável
+        scanf(" %c", &cidade[i].estado);
 
-    // Primeiro Estado
+        printf("Digite o código do Estado: ");
+        scanf("%3s", cidade[i].codigoDaCarta);
 
-    // impressão de texto no terminal
-    printf("Digite a inicial do primeiro Estado: ");
-    // leitura de entrada do valor do usuário e alocação do valor na variável
-    scanf(" %c", &estado1);
+        printf("Digite o nome do Estado: ");
+        scanf("%s", cidade[i].nomeCidade);
 
-    printf("Digite o código do primeiro Estado: ");
-    scanf("%3s", codigoDaCarta1);
+        printf("Digite o valor da população do Estado: ");
+        scanf("%lf", &cidade[i].populacao);
 
-    printf("Digite o nome do primeiro Estado: ");
-    scanf("%s", cidade1);
+        printf("Digite a quantidade de pontos turisticos do Estado: ");
+        scanf("%i", &cidade[i].numeroPontosTuristicos);
 
-    printf("Digite o valor da população do primeiro Estado: ");
-    scanf("%i", &populacao1);
+        printf("Digite a área do Estado: ");
+        scanf("%lf", &cidade[i].area);
 
-    printf("Digite a quantidade de pontos turisticos do primeiro Estado: ");
-    scanf("%i", &numeroPontosTuristicos1);
+        printf("Digite o PIB do Estado: ");
+        scanf("%lf", &cidade[i].pib);
+        separador();
+    }
 
-    printf("Digite a área do primeiro Estado: ");
-    scanf("%f", &area1);
+    //loop para pegar valores de Densidade e PIBPerCapita
+    for (int i = 0; i < 2; i++)
+    {
+        cidade[i].densidadePopulacional = somaDensidade(cidade[i].populacao, cidade[i].area);
+        cidade[i].pibPerCapita = somaPibPerCapita(cidade[i].pib, cidade[i].populacao);
+    }
 
-    printf("Digite o PIB do primeiro Estado: ");
-    scanf("%f", &pib1);
+    // Soma superPoder
+    for (int i = 0; i < 2; i++)
+    {
+        cidade[i].superPoder = (cidade[i].populacao + cidade[i].area + cidade[i].pib + (double) cidade[i].numeroPontosTuristicos + cidade[i].pibPerCapita) - cidade[i].densidadePopulacional;
+    }
 
-    float densidadePopulacional1 = (float)populacao1 / area1;
-    float pibPerCapita1 = (pib1 * 1000000000.0) / (float)populacao1;
-
-    printf("----------------------------\n");
-
-    // Segundo Estado
-
-    printf("Digite a inicial do segundo Estado: ");
-    scanf(" %c", &estado2);
-
-    printf("Digite o código do segundo Estado: ");
-    scanf("%3s", codigoDaCarta2);
-
-    printf("Digite o nome do segundo Estado: ");
-    scanf("%s", cidade2);
-
-    printf("Digite o valor da população do segundo Estado: ");
-    scanf("%i", &populacao2);
-
-    printf("Digite a quantidade de pontos turisticos do segundo Estado: ");
-    scanf("%i", &numeroPontosTuristicos2);
-
-    printf("Digite a área do segundo Estado: ");
-    scanf("%f", &area2);
-
-    printf("Digite o PIB do segundo Estado: ");
-    scanf("%f", &pib2);
-
-    float densidadePopulacional2 = (float)populacao2 / area2;
-    float pibPerCapita2 = (pib2 * 1000000000.0) / (float)populacao2;
-
-    printf("----------------------------\n");
+    separador();
 
     // Impressão dos resultados
+    for (int i = 0; i < 2; i++)
+    {
+        printf("Carta %c \n", i + 1);
+        printf("Estado: %c \n", cidade[i].estado);
+        printf("Código: %s \n", cidade[i].codigoDaCarta);
+        printf("NomeDaCidade: %s \n", cidade[i].nomeCidade);
+        printf("População: %lf \n", cidade[i].populacao);
+        printf("Área: %.2lf KM² \n", cidade[i].area);
+        printf("PIB: %.2lf bilhões de reais \n", cidade[i].pib);
+        printf("NumeroDePontosTuristicos: %d \n", cidade[i].numeroPontosTuristicos);
+        printf("DensidadePopulacional: %.2lf hab/km² \n", cidade[i].densidadePopulacional);
+        printf("PibPerCapita: %.2lf reais \n", cidade[i].pibPerCapita);
+        printf("SuperPoder: %.2lf \n", cidade[i].superPoder);
 
-    printf("Carta 1 \n Estado: %c \n Código: %s \n NomeDaCidade: %s \n População: %d \n Área: %.2f KM² \n PIB: %.2f bilhões de reais \n NumeroDePontosTuristicos: %d \n DensidadePopulacional: %.2f hab/km² \n PibPerCapita: %.2f reais \n", estado1, codigoDaCarta1, cidade1, populacao1, area1, pib1, numeroPontosTuristicos1, densidadePopulacional1, pibPerCapita1);
-
-    printf("----------------------------\n");
-
-    printf("Carta 2 \n Estado: %c \n Código: %s \n NomeDaCidade: %s \n População: %d \n Área: %.2f KM² \n PIB: %.2f bilhões de reais \n NumeroDePontosTuristicos: %d \n DensidadePopulacional: %.2f hab/km² \n PibPerCapita: %.2f reais \n", estado2, codigoDaCarta2, cidade2, populacao2, area2, pib2, numeroPontosTuristicos2, densidadePopulacional2, pibPerCapita2);
+        separador();
+    }
     return 0;
 }
