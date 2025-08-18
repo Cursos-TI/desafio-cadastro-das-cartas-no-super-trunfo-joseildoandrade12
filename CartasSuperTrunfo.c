@@ -97,5 +97,27 @@ int main()
 
         separador();
     }
+
+    if(cidade[1].populacao > cidade[2].populacao) printf("População: Carta 1 venceu \n");
+    else printf("População: Carta 2 venceu \n");
+    
+    if(cidade[1].numeroPontosTuristicos > cidade[2].numeroPontosTuristicos) printf("NumeroPontosTuristicos: Carta 1 venceu \n");
+    else printf("NumeroPontosTuristicos: Carta 2 venceu \n");
+
+    if(cidade[1].area > cidade[2].area) printf("Área: Carta 1 venceu \n");
+    else printf("Área: Carta 2 venceu \n");
+    
+    if(cidade[1].pib > cidade[2].pib) printf("PIB: Carta 1 venceu \n");
+    else printf("PIB: Carta 2 venceu \n");
+    
+    if(cidade[1].densidadePopulacional < cidade[2].densidadePopulacional) printf("DensidadePopulacional: Carta 1 venceu \n");
+    else printf("DensidadePopulacional: Carta 2 venceu \n");
+
+    if(cidade[1].pibPerCapita > cidade[2].pibPerCapita) printf("PibPerCapita: Carta 1 venceu \n");
+    else printf("PibPerCapita: Carta 2 venceu \n");
+    
+    if(cidade[1].superPoder > cidade[2].superPoder) printf("SuperPoder: Carta 1 venceu \n");
+    else printf("SuperPoder: Carta 2 venceu \n");
+    
     return 0;
 }
